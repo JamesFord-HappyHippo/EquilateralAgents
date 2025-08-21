@@ -22,7 +22,7 @@ const createErrorResponse = (message, code) => ({
 // Conditional database import - will be available when environment is set up
 let executeQuery;
 try {
-    executeQuery = require('../../backend/src/helpers/dbOperations').executeQuery;
+    executeQuery = require('../../helpers/dbOperations').executeQuery;
 } catch (error) {
     executeQuery = async (query, params) => {
         throw new Error('Database not available - environment not validated');
