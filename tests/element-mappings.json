@@ -1,0 +1,177 @@
+{
+  "_metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-27T16:24:00Z",
+    "agent": "TestAgent",
+    "framework": "equilateral-ai",
+    "description": "UI element mappings with intelligent remapping support"
+  },
+  
+  "loginButton": {
+    "primarySelector": {
+      "type": "data-testid",
+      "selector": "[data-testid=\"login-button\"]",
+      "stability": "high"
+    },
+    "fallbackSelectors": [
+      {
+        "type": "id",
+        "selector": "#login-btn",
+        "stability": "medium"
+      },
+      {
+        "type": "class", 
+        "selector": ".btn-primary.login",
+        "stability": "low"
+      },
+      {
+        "type": "text",
+        "selector": "text=Sign In",
+        "stability": "low"
+      }
+    ],
+    "lastUpdated": "2025-01-27T16:24:00Z",
+    "stability": "high",
+    "component": "SignIn",
+    "description": "Primary login button on authentication page"
+  },
+
+  "emailInput": {
+    "primarySelector": {
+      "type": "data-testid",
+      "selector": "[data-testid=\"email-input\"]",
+      "stability": "high"
+    },
+    "fallbackSelectors": [
+      {
+        "type": "id",
+        "selector": "#email",
+        "stability": "medium"
+      },
+      {
+        "type": "role",
+        "selector": "[role=\"textbox\"][name=\"email\"]",
+        "stability": "medium"
+      },
+      {
+        "type": "xpath",
+        "selector": "//input[@type='email']",
+        "stability": "very-low"
+      }
+    ],
+    "lastUpdated": "2025-01-27T16:24:00Z",
+    "stability": "high",
+    "component": "SignIn",
+    "description": "Email input field for authentication"
+  },
+
+  "passwordInput": {
+    "primarySelector": {
+      "type": "data-testid",
+      "selector": "[data-testid=\"password-input\"]",
+      "stability": "high"
+    },
+    "fallbackSelectors": [
+      {
+        "type": "id",
+        "selector": "#password",
+        "stability": "medium"
+      },
+      {
+        "type": "role",
+        "selector": "[role=\"textbox\"][type=\"password\"]",
+        "stability": "medium"
+      },
+      {
+        "type": "xpath",
+        "selector": "//input[@type='password']",
+        "stability": "very-low"
+      }
+    ],
+    "lastUpdated": "2025-01-27T16:24:00Z",
+    "stability": "high",
+    "component": "SignIn",
+    "description": "Password input field for authentication"
+  },
+
+  "navigationMenuButton": {
+    "primarySelector": {
+      "type": "data-testid",
+      "selector": "[data-testid=\"nav-menu-toggle\"]",
+      "stability": "high"
+    },
+    "fallbackSelectors": [
+      {
+        "type": "role",
+        "selector": "[role=\"button\"][aria-label=\"Toggle menu\"]",
+        "stability": "medium"
+      },
+      {
+        "type": "class",
+        "selector": ".hamburger-menu",
+        "stability": "low"
+      }
+    ],
+    "lastUpdated": "2025-01-27T16:24:00Z",
+    "stability": "high",
+    "component": "Navigation",
+    "description": "Mobile navigation menu toggle button"
+  },
+
+  "createIntegrationButton": {
+    "primarySelector": {
+      "type": "data-testid",
+      "selector": "[data-testid=\"create-integration-btn\"]",
+      "stability": "high"
+    },
+    "fallbackSelectors": [
+      {
+        "type": "text",
+        "selector": "text=Create Integration",
+        "stability": "low"
+      },
+      {
+        "type": "class",
+        "selector": ".btn-success.create-integration",
+        "stability": "low"
+      }
+    ],
+    "lastUpdated": "2025-01-27T16:24:00Z",
+    "stability": "high",
+    "component": "CreateIntegrationInstanceAction",
+    "description": "Button to create new integration instance"
+  },
+
+  "integrationTemplateDropdown": {
+    "primarySelector": {
+      "type": "data-testid",
+      "selector": "[data-testid=\"template-selector\"]",
+      "stability": "high"
+    },
+    "fallbackSelectors": [
+      {
+        "type": "role",
+        "selector": "[role=\"combobox\"][name=\"template\"]",
+        "stability": "medium"
+      },
+      {
+        "type": "id",
+        "selector": "#template-select",
+        "stability": "medium"
+      }
+    ],
+    "lastUpdated": "2025-01-27T16:24:00Z",
+    "stability": "high",
+    "component": "CreateIntegrationInstanceAction",
+    "description": "Dropdown for selecting integration template"
+  },
+
+  "deprecatedOldButton": {
+    "status": "deprecated",
+    "reason": "Component redesigned in v2.0.0",
+    "alternatives": ["newActionButton", "primaryCTA"],
+    "deprecatedAt": "2025-01-20T10:00:00Z",
+    "previousSelector": "[data-testid=\"old-action-btn\"]",
+    "migrationNotes": "Replace with newActionButton - same functionality, updated styling"
+  }
+}

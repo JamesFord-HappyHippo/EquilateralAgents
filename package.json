@@ -1,0 +1,28 @@
+{
+  "name": "equilateral-ai",
+  "version": "1.0.0",
+  "description": "Equilateral AI - Multi-Agent Orchestration System by Pareidolia LLC",
+  "scripts": {
+    "agents": "node src/agents/cli/orchestrator-cli.js",
+    "test": "echo \"Add your test command here\"",
+    "build": "echo \"Add your build command here\"",
+    "dev": "echo \"Add your development server command here\""
+  },
+  "dependencies": {
+    "commander": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0"
+  },
+  "keywords": [
+    "equilateral-ai",
+    "multi-agent",
+    "orchestration",
+    "automation",
+    "development",
+    "pareidolia",
+    "enterprise"
+  ],
+  "author": "Equilateral AI (Pareidolia LLC)",
+  "license": "MIT"
+}
