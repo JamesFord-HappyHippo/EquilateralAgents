@@ -184,8 +184,16 @@ class AgentOrchestrator extends EventEmitter {
                     agent: 'SecurityReviewerAgent',
                     method: 'performSecurityReview', 
                     required: true,
-                    parallel: true,
                     timeout: 60000
+                },
+                {
+                    name: 'security-triage',
+                    agent: 'SecurityTriageAgent',
+                    method: 'performSecurityTriage',
+                    required: true,
+                    depends: ['security-assessment'],
+                    timeout: 30000,
+                    description: 'Filter findings against established security strategy'
                 },
                 {
                     name: 'audit-validation',

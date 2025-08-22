@@ -105,6 +105,7 @@ node src/agents/cli/orchestrator-cli.js analyze-codebase --path /path/to/your/co
 - **PatternHarvestingAgent** - Analyzes actual project structure (3,949+ files), detects real languages and frameworks
 - **KnowledgeSynthesisAgent** - Combines findings into actionable intelligence from real data  
 - **SecurityReviewerAgent** - Scans actual code for 779+ real security patterns, finds real vulnerabilities
+- **SecurityTriageAgent** - Intelligent filtering of security findings against established strategy and progressive security philosophy
 - **AuditorAgent** - Real standards compliance analysis using actual test coverage data
 
 ### Development & Testing
@@ -117,6 +118,91 @@ node src/agents/cli/orchestrator-cli.js analyze-codebase --path /path/to/your/co
 - **AgentFactoryAgent** - Creates new specialized agents based on real project analysis
 - **AgentMemoryManager** - Real PostgreSQL-backed context and state management
 - **AgentClassifier** - Intelligent task routing based on actual agent capabilities
+
+## 🛡️ Intelligent Security Triage System
+
+The EquilateralAgents system includes advanced **SecurityTriageAgent** that provides intelligent filtering of security findings against your established security strategy.
+
+### 📋 Required Security Documents
+
+For optimal security triage, create these two documents in your project's `.clinerules/` directory:
+
+#### 1. **Basic Tech Stack Security** (`tech_stack_security.md`)
+Document your technology-specific security requirements:
+```markdown
+# Technology Stack and Security Standards
+
+## AWS Services and Infrastructure
+- AWS Cognito authentication flows
+- Lambda security patterns  
+- RDS encryption requirements
+- API Gateway security headers
+
+## Development Security Standards
+- Input validation patterns
+- Error handling without data exposure
+- Dependency management policies
+```
+
+#### 2. **Progressive Security Philosophy** (`progressive_security_philosophy.md`) 
+Define security levels that scale with your project:
+```markdown
+# Progressive Security Philosophy
+
+## Foundation Level (Development)
+- Basic authentication required
+- HTTPS/TLS for all endpoints
+- Structured error responses
+
+## Enhanced Level (Staging)  
+- MFA requirement for admin roles
+- Role-based access control
+- Comprehensive audit logging
+
+## Advanced Level (Production)
+- Zero-trust architecture
+- Real-time threat monitoring  
+- Automated security validation
+
+## Enterprise Level (Scale)
+- Formal security verification
+- 24/7 SOC integration
+- Compliance automation
+```
+
+### 🎯 **How Security Triage Works**
+
+1. **SecurityReviewerAgent** scans code and finds security patterns
+2. **SecurityTriageAgent** filters findings against your strategy documents
+3. **Results categorized** as:
+   - ✅ **Acceptable Risks** - Aligned with your documented strategy
+   - 🚨 **Genuine Concerns** - Real security issues requiring attention  
+   - 🔍 **Requires Investigation** - Unknown patterns needing review
+   - ❌ **False Positives** - Non-issues (test files, dev-only code)
+
+### 📊 **Security Level Adaptation**
+
+SecurityTriageAgent automatically adjusts risk tolerance based on:
+- **Environment** (dev/staging/production)  
+- **Project scale** (user count, data sensitivity)
+- **Compliance requirements** (HIPAA, SOX, PCI-DSS)
+
+```bash
+# Enhanced security workflow with intelligent triage
+npm run agents security-review
+
+# Results show both raw findings AND triaged assessment:
+# 🔍 Found 725 security findings
+# 📊 After triage: 12 genuine concerns, 580 acceptable risks
+```
+
+### 🚀 **Benefits**
+
+- **Reduces noise** - Filter out acceptable risks per your strategy
+- **Focuses attention** - Highlights genuine security concerns
+- **Context-aware** - Understands dev vs production environments  
+- **Strategy-aligned** - Decisions based on your documented approach
+- **Progressive scaling** - Security requirements adapt as project grows
 
 ## 🎯 Customizing for Your Domain
 

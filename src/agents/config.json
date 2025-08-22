@@ -111,6 +111,29 @@
       "status": "active"
     },
 
+    "SecurityTriageAgent": {
+      "path": "src/agents/specialists/SecurityTriageAgent.js",
+      "description": "Intelligent security finding triage against established strategy",
+      "capabilities": [
+        "security-finding-triage",
+        "strategy-based-filtering",
+        "acceptable-risk-assessment",
+        "false-positive-detection",
+        "pilot-readiness-evaluation",
+        "contextual-security-analysis",
+        "risk-level-calculation"
+      ],
+      "securityIntegration": {
+        "strategy": "tech_stack_security_standards",
+        "filtering": "context_aware_triage",
+        "validation": "strategy_compliance_check",
+        "reporting": "actionable_insights"
+      },
+      "outputFormats": ["JSON", "Markdown"],
+      "standards": ["Project Security Strategy", "Progressive Security Philosophy", "Risk-Based Security"],
+      "status": "active"
+    },
+
     "AgentClassifier": {
       "path": "src/agents/specialists/AgentClassifier.js",
       "description": "Agent classification and intelligent routing",

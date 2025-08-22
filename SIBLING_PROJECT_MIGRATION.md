@@ -63,14 +63,17 @@ PROJECT_NAME=Waves  # or HoneyDo, Seawater, etc.
 
 ```bash
 npm install pg commander glob
-# Optional for SQLite fallback
+# Optional for SQLite fallback (recommended for development)
 npm install sqlite3 sqlite
 ```
+
+**Note**: SQLite is recommended for initial setup and testing as it requires no external database configuration.
 
 ### Step 2: Copy Agent System Files
 
 Copy these files from EquilateralAgents to your project:
 
+**For projects with `src/` directory (most React/Node projects):**
 ```
 src/agents/
 ├── core/
@@ -86,6 +89,27 @@ src/agents/
 ├── simple-db-setup.js
 └── config.json
 ```
+
+**For projects without `src/` directory (like oxide-performance-poc):**
+```
+agents/
+├── core/
+│   └── AgentOrchestrator.js
+├── specialists/
+│   ├── SecurityReviewerAgent.js
+│   ├── TestAgent.js
+│   ├── PatternHarvestingAgent.js
+│   └── [other specialists]
+├── helpers/
+│   └── responseUtil.js  # Project-agnostic response utilities
+├── simple-agent-runner.js
+├── simple-db-setup.js
+└── config.json
+```
+
+**Important**: Update the orchestrator CLI path in `agents/cli/orchestrator-cli.js` to match your structure:
+- For `src/agents/`: Use `agentDirectory: 'src/agents/specialists'`
+- For `agents/`: Use `agentDirectory: 'agents/specialists'`
 
 ### Step 3: Update package.json
 
@@ -104,11 +128,21 @@ Add the agents command to your scripts:
 Run the database setup script:
 
 ```bash
-# For PostgreSQL (recommended)
+# For PostgreSQL (recommended for production)
 DB_TYPE=postgresql DB_HOST=your-host DB_NAME=equilateral_agents_shared node src/agents/simple-db-setup.js
 
-# For SQLite (local development)
+# For SQLite (recommended for development/testing)
 DB_TYPE=sqlite DB_PATH=./agents.db node src/agents/simple-db-setup.js
+```
+
+**Expected Output**:
+```
+🔧 Setting up agent database...
+📊 Database type: sqlite
+🔌 Connecting to SQLite at ./agents.db...
+✅ Database connection successful
+✅ Agent coordination tables created
+🚀 Agent database ready for coordination!
 ```
 
 ### Step 5: Test Agent Functionality
@@ -117,9 +151,25 @@ DB_TYPE=sqlite DB_PATH=./agents.db node src/agents/simple-db-setup.js
 # List available agents
 npm run agents list-agents
 
-# Execute a workflow
-npm run agents deploy-feature --environment dev --branch main
+# List available workflows
+npm run agents list-workflows
+
+# Execute a workflow (simple commands, no arguments)
+npm run agents security-review
+npm run agents code-quality-check
 ```
+
+**Expected Output**:
+```
+✅ Orchestrator initialized - 11 agents, 4 workflows
+🤖 Available Agents:
+  AgentClassifier (loaded)
+  SecurityReviewerAgent (loaded)  
+  TestAgent (loaded)
+  [... 8 more agents]
+```
+
+**Note**: You may see "❌ Orchestrator initialization timeout" - this is cosmetic and can be ignored if agents load successfully.
 
 ---
 
@@ -223,10 +273,29 @@ const result = await client.query(query, ['Waves']);
 
 ### Common Issues
 
-1. **Connection failures**: Verify database credentials and network access
-2. **Missing tables**: Re-run `simple-db-setup.js` to create schema
-3. **Agent execution errors**: Check that all specialist files are copied correctly
-4. **Workflow conflicts**: Use unique workflow IDs with project prefixes
+1. **"Cannot find module 'commander'" Error**: 
+   - **Solution**: Run `npm install commander glob` in your project directory
+   - **Root Cause**: Missing CLI dependencies for orchestrator
+
+2. **"Agent directory not found" Error**:
+   - **Solution**: Verify file paths in orchestrator CLI configuration
+   - **Check**: Ensure `agentDirectory` matches your project structure (`src/agents/specialists` vs `agents/specialists`)
+
+3. **"Cannot find module '../helpers/responseUtil'" Error**:
+   - **Solution**: Ensure you copied the `helpers/` folder from EquilateralAgents
+   - **Verify**: All agents should import from `../helpers/responseUtil`
+
+4. **"❌ Orchestrator initialization timeout"**:
+   - **Status**: Cosmetic issue - can be ignored if agents load successfully
+   - **Evidence**: Look for "✅ Orchestrator initialized - X agents, Y workflows"
+
+5. **Some agents fail to load with "AgentClass is not a constructor"**:
+   - **Status**: Normal for some legacy agents with export format differences
+   - **Impact**: Core agents (SecurityReviewerAgent, TestAgent, AgentClassifier) should still load
+
+6. **Connection failures**: Verify database credentials and network access
+7. **Missing tables**: Re-run `simple-db-setup.js` to create schema
+8. **Workflow conflicts**: Use unique workflow IDs with project prefixes
 
 ### Getting Help
 
