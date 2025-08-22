@@ -9,7 +9,8 @@
     "dev": "echo \"Add your development server command here\""
   },
   "dependencies": {
-    "commander": "^12.0.0"
+    "commander": "^12.0.0",
+    "glob": "^10.3.10"
   },
   "devDependencies": {
     "@types/node": "^20.10.0"
