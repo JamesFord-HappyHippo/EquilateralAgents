@@ -7,7 +7,7 @@
 
 const fs = require('fs').promises;
 const path = require('path');
-const { createSuccessResponse, createErrorResponse } = require('../../helpers/responseUtil');
+const { createSuccessResponse, createErrorResponse } = require('../helpers/responseUtil');
 
 class KnowledgeSynthesisAgent {
     constructor() {
