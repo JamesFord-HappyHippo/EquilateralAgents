@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Enterprise Archaeology - Equilateral AI</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Uncovering and understanding legacy systems, technical debt archaeology, and strategies for modernizing enterprise codebases.">
+  <meta name="keywords" content="legacy systems, enterprise archaeology, technical debt, system modernization, legacy code, enterprise software">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="site-title">Equilateral AI</a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="war-stories.html">War Stories</a></li>
+            <li><a href="mcp-workflow.html">MCP Workflow</a></li>
+            <li><a href="coding-with-constraints.html">Constraints</a></li>
+            <li><a href="enterprise-archaeology.html">Archaeology</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="back-nav">
+        <a href="index.html" class="back-link">Back to Home</a>
+      </div>
+
+      <div class="page-header fade-in-up">
+        <h1>🏛️ Enterprise Archaeology</h1>
+        <p class="subtitle">Uncovering the buried treasures and hidden dangers in legacy systems - the art and science of understanding codebases that predate your career.</p>
+      </div>
+
+      <div class="content-width">
+        <section class="content-section fade-in-up">
+          <h2>The Digital Dig Site</h2>
+          <p>Every mature enterprise system is an archaeological site. Layers of business logic accumulated over decades, each representing the technological and organizational context of its time. Like actual archaeologists, we must carefully excavate these systems to understand their structure, purpose, and the civilizations of developers who built them.</p>
+          
+          <div class="quote">
+            The code you're debugging was written by someone who knew something you don't know, in a context you don't understand, solving a problem you're not aware of.
+          </div>
+
+          <p>Enterprise archaeology isn't just about understanding legacy code - it's about reconstructing the business rules, technical constraints, and organizational pressures that shaped the system over time.</p>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Layers of Software Sediment</h2>
+          
+          <h3>The Geological Timeline</h3>
+          <p>Enterprise systems accumulate in distinct technological eras:</p>
+          
+          <ul>
+            <li><strong>The Mainframe Era (1970s-1990s):</strong> COBOL, FORTRAN, centralized processing</li>
+            <li><strong>The Client-Server Era (1990s-2000s):</strong> Three-tier architecture, stored procedures, fat clients</li>
+            <li><strong>The Web Era (2000s-2010s):</strong> N-tier architecture, service-oriented design, early cloud</li>
+            <li><strong>The Mobile/Cloud Era (2010s-2020s):</strong> Microservices, APIs, cloud-native design</li>
+            <li><strong>The AI Era (2020s-present):</strong> ML integration, AI-assisted development, intelligent automation</li>
+          </ul>
+
+          <h3>Archaeological Evidence in Code</h3>
+          <div class="code-block" data-language="sql">
+-- Year 2001: Y2K remediation artifacts
+CREATE TABLE customer_backup_y2k (
+  cust_id CHAR(8),
+  birth_year CHAR(4), -- Fixed from CHAR(2) in 2000
+  -- Original table had YY format, causing Y2K issues
+  
+-- Year 2008: Financial crisis business rule changes  
+-- CONSTRAINT chk_credit_limit CHECK (credit_limit <= 50000), -- Removed 2008-09-15
+  
+-- Year 2012: GDPR preparation (implemented 6 years early)
+  gdpr_consent_date DATE, -- Added 2012-03-15, required by 2018
+  
+-- Year 2020: COVID remote work modifications
+  remote_access_flag CHAR(1) DEFAULT 'N' -- Emergency addition 2020-03-16
+);
+          </div>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Excavation Techniques</h2>
+          
+          <h3>The Code Stratigraphy Method</h3>
+          <p>Understanding system layers through systematic analysis:</p>
+          
+          <div class="code-block" data-language="bash">
+# Archaeological git analysis
+# Find the oldest code still in active use
+git log --follow --format="%ai %an %s" --reverse src/core/BusinessRules.java | head -10
+
+# Identify major architectural shifts
+git log --oneline --grep="refactor\|migration\|upgrade" --since="2015-01-01"
+
+# Find abandoned architectural decisions
+git log --oneline --grep="TODO\|FIXME\|HACK" --since="2020-01-01"
+          </div>
+
+          <h3>The Business Logic Forensics Approach</h3>
+          <p>Reconstructing business rules from implementation artifacts:</p>
+          
+          <div class="code-block" data-language="java">
+// Archaeological evidence of business rule evolution
+public class PricingEngine {
+    public BigDecimal calculatePrice(Product product, Customer customer) {
+        BigDecimal basePrice = product.getBasePrice();
+        
+        // 2003: Original volume discount system
+        if (customer.getAnnualVolume() > 100000) {
+            basePrice = basePrice.multiply(new BigDecimal("0.90"));
+        }
+        
+        // 2007: VIP customer tier (merger with CompanyX)
+        if (customer.getTier().equals("VIP")) {
+            basePrice = basePrice.multiply(new BigDecimal("0.85"));
+        }
+        
+        // 2012: Geographic pricing adjustments (EU expansion)
+        if (customer.getRegion().equals("EU")) {
+            basePrice = basePrice.multiply(new BigDecimal("1.20")); // VAT implications
+        }
+        
+        // 2018: Regulatory compliance pricing
+        // Can't discount below cost due to antitrust ruling
+        BigDecimal minPrice = product.getCost().multiply(new BigDecimal("1.05"));
+        return basePrice.max(minPrice);
+    }
+}
+          </div>
+
+          <h3>The Dependency Archaeology Method</h3>
+          <p>Mapping the invisible relationships that hold systems together:</p>
+          
+          <ul>
+            <li><strong>Database Dependencies:</strong> Foreign keys, triggers, stored procedures</li>
+            <li><strong>Integration Dependencies:</strong> API contracts, message formats, file exchanges</li>
+            <li><strong>Runtime Dependencies:</strong> Shared libraries, configuration files, environment variables</li>
+            <li><strong>Tribal Knowledge Dependencies:</strong> Manual processes, institutional memory, documentation gaps</li>
+          </ul>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Common Archaeological Discoveries</h2>
+          
+          <h3>The Ghost Tables</h3>
+          <p>Database tables that are still populated but no longer used by application code:</p>
+          
+          <div class="code-block" data-language="sql">
+-- Table appears in nightly ETL but hasn't been queried by apps since 2019
+SELECT table_name, last_analyzed 
+FROM user_tables 
+WHERE table_name LIKE '%_STAGING_%'
+  AND last_analyzed < DATE '2020-01-01';
+
+-- Often contains valuable historical data or expensive ETL processes
+-- that can safely be archived
+          </div>
+
+          <h3>The Configuration Fossils</h3>
+          <p>Settings that made sense in a different technological context:</p>
+          
+          <div class="code-block" data-language="properties">
+# config.properties - Archaeological layers visible
+# 2005: Original single-server deployment
+server.max.connections=50
+
+# 2010: Load balancer addition (forgot to update connection pools)  
+# server.max.connections=200  # Commented out but never removed
+
+# 2015: Cloud migration (still using on-premise values)
+server.max.connections=50  # Should be 500+ in cloud environment
+
+# 2020: Kubernetes deployment (pod-level limits override this anyway)
+# This setting is now effectively meaningless but still read by code
+          </div>
+
+          <h3>The Business Rule Mutations</h3>
+          <p>Logic that evolved through incremental changes without overall design:</p>
+          
+          <div class="code-block" data-language="javascript">
+// 8 years of incremental business rule changes
+function calculateDiscount(customer, order) {
+    let discount = 0;
+    
+    // Original rule: 5% for orders over $1000
+    if (order.total > 1000) discount = 0.05;
+    
+    // 2017: Special handling for legacy customers (CompanyY acquisition)
+    if (customer.legacy_flag && order.total > 500) discount = 0.07;
+    
+    // 2019: Seasonal promotion logic (never removed)
+    if (isHolidaySeason()) discount = Math.max(discount, 0.10);
+    
+    // 2020: COVID business continuity discounts  
+    if (customer.industry === 'healthcare') discount = Math.max(discount, 0.15);
+    
+    // 2021: Supply chain adjustment (temporary became permanent)
+    if (order.hasBackorderedItems()) discount = Math.min(discount, 0.03);
+    
+    // 2023: AI-recommended customer retention discount
+    if (customer.churnRisk > 0.7) discount = Math.max(discount, 0.12);
+    
+    return discount; // Nobody knows the exact business logic anymore
+}
+          </div>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Modernization Strategies</h2>
+          
+          <h3>The Museum Approach</h3>
+          <p>Some systems are too valuable to change and too risky to replace:</p>
+          
+          <ul>
+            <li><strong>Preserve in Place:</strong> Maintain exactly as-is with minimal changes</li>
+            <li><strong>Build Protective Layers:</strong> APIs and wrappers to isolate from modern systems</li>
+            <li><strong>Document Extensively:</strong> Capture tribal knowledge before it's lost</li>
+            <li><strong>Plan for Succession:</strong> Identify eventual replacement timeline</li>
+          </ul>
+
+          <h3>The Archaeological Restoration Approach</h3>
+          <p>Carefully modernizing while preserving essential characteristics:</p>
+          
+          <div class="code-block" data-language="typescript">
+// Modern wrapper preserving legacy business logic
+class LegacyPricingService {
+  private legacyEngine: any; // The original implementation
+  
+  async calculatePrice(product: Product, customer: Customer): Promise<Price> {
+    // Step 1: Data transformation to legacy format
+    const legacyProduct = this.toLegacyProduct(product);
+    const legacyCustomer = this.toLegacyCustomer(customer);
+    
+    // Step 2: Use original business logic (don't fix what works)
+    const legacyPrice = this.legacyEngine.calculatePrice(legacyProduct, legacyCustomer);
+    
+    // Step 3: Transform result to modern format
+    return this.toModernPrice(legacyPrice);
+  }
+  
+  // Preserve exact business logic while improving interface
+}
+          </div>
+
+          <h3>The Selective Excavation Approach</h3>
+          <p>Extract valuable business logic while leaving infrastructure in place:</p>
+          
+          <ul>
+            <li><strong>Business Rule Mining:</strong> Extract complex calculations and validations</li>
+            <li><strong>Data Pattern Recognition:</strong> Understand data relationships and constraints</li>
+            <li><strong>Integration Pattern Preservation:</strong> Maintain external API contracts</li>
+            <li><strong>Performance Characteristic Documentation:</strong> Understand what makes it fast/slow</li>
+          </ul>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>The Tribal Knowledge Problem</h2>
+          
+          <h3>Capturing Institutional Memory</h3>
+          <p>The most valuable archaeological artifacts aren't in the code - they're in people's heads:</p>
+          
+          <div class="quote">
+            "Oh, you can't change that field. It's connected to the mainframe batch job that runs every Tuesday. If it fails, payroll doesn't work. Dave knows how to restart it, but he's retiring next month."
+          </div>
+
+          <h3>Knowledge Extraction Techniques</h3>
+          <ul>
+            <li><strong>Shadow Documentation:</strong> Follow experts around and document their tribal knowledge</li>
+            <li><strong>Incident Post-Mortems:</strong> When systems break, understand why someone knew how to fix them</li>
+            <li><strong>Code Walkthrough Sessions:</strong> Have experts explain not just what code does, but why it exists</li>
+            <li><strong>Business Context Interviews:</strong> Understand the business changes that drove technical decisions</li>
+          </ul>
+
+          <h3>Creating Archaeological Documentation</h3>
+          <div class="code-block" data-language="markdown">
+# System Archaeological Report: Customer Management System
+
+## Excavation Summary
+- **System Age:** 23 years (initial development: 2001)  
+- **Major Renovations:** 2008 (SOA), 2015 (Cloud), 2020 (API Gateway)
+- **Archaeological Complexity:** High - spans 4 technological eras
+
+## Significant Artifacts
+- **Business Rule Concentration:** PricingEngine.java (2,400 lines, 8 years of changes)
+- **Data Architecture Fossils:** 47 "temporary" tables from 2008 migration still in use
+- **Integration Archaeology:** SOAP services wrapped in REST wrappers for legacy compatibility
+
+## Modernization Recommendations
+1. **Museum Preservation:** Core pricing logic - too complex and risky to change
+2. **Selective Excavation:** Extract customer validation rules to microservice  
+3. **Infrastructure Modernization:** Replace data access layer, preserve business logic
+
+## Tribal Knowledge Holders
+- **Dave Martinez:** Batch processing systems, mainframe integration (retiring Q2 2025)
+- **Sarah Chen:** Pricing rule evolution, regulatory compliance context
+- **Legacy Vendor:** CompanyX integration details (contract expires 2026)
+          </div>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>AI-Assisted Archaeological Tools</h2>
+          
+          <h3>Code Pattern Recognition</h3>
+          <p>AI can help identify archaeological patterns humans might miss:</p>
+          
+          <ul>
+            <li><strong>Business Rule Clustering:</strong> Group related logic scattered across files</li>
+            <li><strong>Dead Code Detection:</strong> Identify code paths that are no longer reachable</li>
+            <li><strong>Architectural Layer Analysis:</strong> Map system layers and their evolution</li>
+            <li><strong>Dependency Risk Assessment:</strong> Identify fragile integration points</li>
+          </ul>
+
+          <h3>Historical Context Reconstruction</h3>
+          <p>Using AI to correlate code changes with business context:</p>
+          
+          <div class="code-block" data-language="python">
+# AI-assisted archaeological analysis
+def analyze_code_evolution(file_path):
+    commits = git_history(file_path)
+    business_events = get_business_timeline()
+    
+    for commit in commits:
+        # Correlate code changes with business events
+        context = find_business_context(commit.date, business_events)
+        
+        # AI analysis of change patterns
+        change_type = classify_change(commit.diff)
+        business_impact = assess_business_impact(commit.diff, context)
+        
+        print(f"{commit.date}: {change_type} - {business_impact}")
+        # Example output:
+        # 2008-09-15: Emergency Business Rule Change - Financial Crisis Response
+        # 2020-03-16: Infrastructure Scaling - COVID Remote Work Surge
+          </div>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>The Future of Archaeological Practice</h2>
+          
+          <h3>Proactive Archaeology</h3>
+          <p>Instead of reactive excavation, modern teams practice proactive archaeology:</p>
+          
+          <ul>
+            <li><strong>Architectural Decision Records:</strong> Document why decisions were made</li>
+            <li><strong>Business Context Tagging:</strong> Link code changes to business drivers</li>
+            <li><strong>Deprecation Timelines:</strong> Plan archaeological preservation before building</li>
+            <li><strong>Knowledge Transfer Protocols:</strong> Prevent tribal knowledge from forming</li>
+          </ul>
+
+          <h3>The Archaeological Mindset</h3>
+          <p>Every line of code you write today will be archaeological evidence tomorrow:</p>
+          
+          <div class="quote">
+            Write code as if the person who maintains it is a violent archaeologist who knows where you live.
+          </div>
+
+          <p>The archaeological mindset transforms how we approach legacy systems - from obstacles to overcome to historical treasures to preserve and understand.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="war-stories.html">War Stories</a>
+          <a href="mcp-workflow.html">MCP</a>
+          <a href="coding-with-constraints.html">Constraints</a>
+          <a href="enterprise-archaeology.html">Archaeology</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="mailto:hello@equilateral.ai">Contact</a>
+        </div>
+        <p>&copy; 2025 Equilateral AI. Preserving the digital heritage of enterprise software.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coding With Constraints - Equilateral AI</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Working within technical, business, and organizational constraints while maintaining code quality and developer productivity.">
+  <meta name="keywords" content="coding constraints, technical debt, legacy systems, software engineering constraints, pragmatic development">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="site-title">Equilateral AI</a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="war-stories.html">War Stories</a></li>
+            <li><a href="mcp-workflow.html">MCP Workflow</a></li>
+            <li><a href="coding-with-constraints.html">Constraints</a></li>
+            <li><a href="enterprise-archaeology.html">Archaeology</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="back-nav">
+        <a href="index.html" class="back-link">Back to Home</a>
+      </div>
+
+      <div class="page-header fade-in-up">
+        <h1>🧠 Coding With Constraints</h1>
+        <p class="subtitle">Pragmatic approaches to building software when perfect solutions aren't possible, resources are limited, and deadlines are real.</p>
+      </div>
+
+      <div class="content-width">
+        <section class="content-section fade-in-up">
+          <h2>The Reality of Software Development</h2>
+          <p>Every software project exists within constraints. Time constraints. Budget constraints. Technical constraints from legacy systems. Organizational constraints from team structure and skill sets. The art of professional software development lies not in creating perfect solutions, but in creating the best possible solutions within these constraints.</p>
+          
+          <div class="quote">
+            Perfect is the enemy of good, but good is the enemy of shipping. The skill is knowing where to draw the line.
+          </div>
+
+          <p>This isn't about accepting poor quality code or cutting corners. It's about making deliberate, informed trade-offs that deliver value while maintaining long-term system health.</p>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Types of Development Constraints</h2>
+          
+          <h3>Technical Constraints</h3>
+          <ul>
+            <li><strong>Legacy System Integration:</strong> Working with 15-year-old APIs that can't be changed</li>
+            <li><strong>Technology Stack Limitations:</strong> Being locked into specific frameworks or languages</li>
+            <li><strong>Performance Requirements:</strong> Sub-second response times with limited infrastructure budget</li>
+            <li><strong>Data Consistency:</strong> Maintaining integrity across distributed systems without transactions</li>
+          </ul>
+
+          <h3>Business Constraints</h3>
+          <ul>
+            <li><strong>Fixed Deadlines:</strong> Product launches, regulatory compliance, seasonal events</li>
+            <li><strong>Budget Limitations:</strong> Limited development time, infrastructure costs, third-party services</li>
+            <li><strong>Compliance Requirements:</strong> SOX, GDPR, HIPAA, industry-specific regulations</li>
+            <li><strong>User Experience Non-negotiables:</strong> Features that must work exactly as specified</li>
+          </ul>
+
+          <h3>Organizational Constraints</h3>
+          <ul>
+            <li><strong>Team Skill Sets:</strong> Working with the team you have, not the team you want</li>
+            <li><strong>Communication Boundaries:</strong> Conway's Law in action across departments</li>
+            <li><strong>Risk Tolerance:</strong> Conservative organizations vs. move-fast-and-break-things cultures</li>
+            <li><strong>Knowledge Silos:</strong> Critical system knowledge held by one person</li>
+          </ul>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Constraint-Driven Design Patterns</h2>
+          
+          <h3>The Strangler Fig Pattern</h3>
+          <p>When you can't replace a legacy system all at once, you gradually strangle it with new functionality:</p>
+          
+          <div class="code-block" data-language="typescript">
+// Legacy system handling 80% of traffic
+// New system gradually taking over specific routes
+const routeHandler = (request: Request) => {
+  if (isNewFeature(request.path)) {
+    return newSystem.handle(request);
+  }
+  
+  if (isLegacyMigrated(request.path)) {
+    return newSystem.handle(request);
+  }
+  
+  return legacySystem.handle(request);
+};
+          </div>
+
+          <h3>The Good Enough Cache</h3>
+          <p>Sometimes a simple in-memory cache is better than an over-engineered distributed cache:</p>
+          
+          <div class="code-block" data-language="typescript">
+// Not perfect, but solves 95% of the performance problem
+const simpleCache = new Map<string, { data: any, expiry: number }>();
+
+const getCachedData = (key: string) => {
+  const cached = simpleCache.get(key);
+  if (cached && cached.expiry > Date.now()) {
+    return cached.data;
+  }
+  
+  const freshData = expensiveOperation(key);
+  simpleCache.set(key, { 
+    data: freshData, 
+    expiry: Date.now() + 300000 // 5 minutes
+  });
+  
+  return freshData;
+};
+          </div>
+
+          <h3>The Graceful Degradation Strategy</h3>
+          <p>Build systems that work imperfectly rather than fail completely:</p>
+          
+          <div class="code-block" data-language="typescript">
+const getRecommendations = async (userId: string) => {
+  try {
+    // Try the ML recommendation engine
+    return await aiRecommendationService.getRecommendations(userId);
+  } catch (error) {
+    // Fall back to simple popularity-based recommendations
+    console.warn('AI service unavailable, using fallback', error);
+    return await getPopularItems(userId);
+  }
+};
+          </div>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Working with Legacy Code</h2>
+          <p>Most professional development involves working with existing systems that weren't designed for your current requirements.</p>
+          
+          <h3>The Characterization Test Strategy</h3>
+          <p>When you inherit code without tests, start by characterizing what it actually does:</p>
+          
+          <div class="code-block" data-language="typescript">
+// Legacy function that "calculates shipping cost"
+// No one knows exactly how it works
+const calculateShipping = (order: any) => {
+  // ... 200 lines of mysterious business logic
+  return someComplexCalculation;
+};
+
+// Characterization test - document what it currently does
+test('calculateShipping behavior', () => {
+  // Not testing if it's correct, just that it's consistent
+  expect(calculateShipping(standardOrder)).toBe(12.50);
+  expect(calculateShipping(internationalOrder)).toBe(45.00);
+  expect(calculateShipping(bulkOrder)).toBe(8.75);
+});
+          </div>
+
+          <h3>The Seam Strategy</h3>
+          <p>Find natural boundaries in legacy code where you can inject new behavior:</p>
+          
+          <div class="code-block" data-language="typescript">
+// Legacy code that's hard to test
+class OrderProcessor {
+  processOrder(order: Order) {
+    // ... complex logic
+    this.sendEmail(order.customerEmail, emailContent); // <- Seam!
+    // ... more complex logic
+  }
+  
+  // Make this method virtual/overridable for testing
+  protected sendEmail(email: string, content: string) {
+    emailService.send(email, content);
+  }
+}
+          </div>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Time Constraint Strategies</h2>
+          
+          <h3>The MVP Mindset</h3>
+          <p>Minimum Viable Product isn't about building something minimal - it's about building the minimum thing that provides value:</p>
+          
+          <ul>
+            <li><strong>Feature Complete vs. Experience Complete:</strong> Core functionality working vs. polished experience</li>
+            <li><strong>Manual vs. Automated:</strong> Sometimes a human process is faster to implement than automation</li>
+            <li><strong>Hard-coded vs. Configurable:</strong> Start with constants, add configuration when needed</li>
+            <li><strong>Synchronous vs. Asynchronous:</strong> Start simple, optimize for scale later</li>
+          </ul>
+
+          <h3>The Technical Debt Ledger</h3>
+          <p>Not all technical debt is bad. Track it deliberately:</p>
+          
+          <div class="code-block" data-language="javascript">
+// TODO: DEBT - Replace with proper queue system when we hit 1000 orders/day
+// Current simple approach handles ~100 orders/day reliably
+// Estimated fix time: 2 weeks
+// Business impact if not fixed: Manual intervention required at scale
+const processOrderQueue = orders.map(order => processOrder(order));
+          </div>
+
+          <div class="quote">
+            Technical debt is like financial debt - it's a tool. Used wisely, it enables faster delivery. Used carelessly, it compounds into a crisis.
+          </div>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Quality vs. Speed Trade-offs</h2>
+          
+          <h3>The Testing Pyramid Under Pressure</h3>
+          <p>When time is short, be strategic about testing:</p>
+          
+          <ul>
+            <li><strong>Happy Path Integration Tests:</strong> Cover the core user journey first</li>
+            <li><strong>Unit Tests for Business Logic:</strong> Test calculations, validations, and transformations</li>
+            <li><strong>Manual Testing for UI:</strong> Sometimes faster than automating, especially for one-time features</li>
+            <li><strong>Monitoring as Testing:</strong> Deploy with comprehensive monitoring and alerts</li>
+          </ul>
+
+          <h3>Code Review Under Constraints</h3>
+          <p>Focus reviews on what matters most:</p>
+          
+          <ul>
+            <li><strong>Security vulnerabilities</strong> - Always worth the time</li>
+            <li><strong>Performance bottlenecks</strong> - Hard to fix after deployment</li>
+            <li><strong>API contracts</strong> - Changes are expensive later</li>
+            <li><strong>Business logic correctness</strong> - Wrong calculations compound over time</li>
+            <li><strong>Style and formatting</strong> - Use automated tools, not human review time</li>
+          </ul>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Communication Strategies</h2>
+          
+          <h3>Explaining Technical Constraints to Non-Technical Stakeholders</h3>
+          <p>Translation is a core skill for constraint-driven development:</p>
+          
+          <div class="quote">
+            "We can build feature X in 2 weeks, but it won't scale past 100 users. Or we can spend 6 weeks building it properly to handle 10,000 users. What's your user growth timeline?"
+          </div>
+
+          <h3>The Options Framework</h3>
+          <p>Always present constraints with options:</p>
+          
+          <ul>
+            <li><strong>Fast:</strong> Quick implementation with known limitations</li>
+            <li><strong>Good:</strong> Solid implementation that meets current requirements</li>
+            <li><strong>Right:</strong> Comprehensive solution that handles future growth</li>
+          </ul>
+
+          <p>Let stakeholders choose which constraint to relax: time, scope, or quality.</p>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Tools for Constraint-Driven Development</h2>
+          
+          <h3>Decision Records</h3>
+          <p>Document the constraints that led to architectural decisions:</p>
+          
+          <div class="code-block" data-language="markdown">
+# ADR-001: Use Redis for Session Storage
+
+## Context
+- Need session persistence across multiple server instances
+- Budget constraint: Can't afford dedicated session management service
+- Time constraint: Must ship in 2 weeks
+- Team constraint: No experience with complex session solutions
+
+## Decision
+Use Redis for session storage with simple key-value approach
+
+## Consequences
+- Positive: Fast, simple, meets immediate needs
+- Negative: Single point of failure
+- Mitigation: Plan Redis clustering for Q3 when budget allows
+          </div>
+
+          <h3>Constraint Tracking</h3>
+          <p>Keep a living document of active constraints and their expiration dates:</p>
+          
+          <ul>
+            <li><strong>Technical:</strong> "Using SQLite until we hit 1000 concurrent users"</li>
+            <li><strong>Business:</strong> "Manual approval process until compliance audit completes"</li>
+            <li><strong>Resource:</strong> "Single server deployment until Q2 budget approved"</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="war-stories.html">War Stories</a>
+          <a href="mcp-workflow.html">MCP</a>
+          <a href="coding-with-constraints.html">Constraints</a>
+          <a href="enterprise-archaeology.html">Archaeology</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="mailto:hello@equilateral.ai">Contact</a>
+        </div>
+        <p>&copy; 2025 Equilateral AI. Building the best solutions within the constraints of reality.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

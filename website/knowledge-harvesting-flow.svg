@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1400" height="600" viewBox="0 0 1400 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="harvestGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="codebaseGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6b7280;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#374151;stop-opacity:1" />
+    </linearGradient>
+    
+    <marker id="flowArrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#3b82f6"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1400" height="600" fill="#f8fafc"/>
+  
+  <!-- Title -->
+  <text x="700" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#1e40af">
+    Knowledge Harvesting: From Legacy to AI-Accelerated Future
+  </text>
+  
+  <!-- Legacy Codebases (Left Side) -->
+  <g id="legacy-systems">
+    <!-- Large Legacy System -->
+    <rect x="50" y="100" width="200" height="400" fill="url(#codebaseGradient)" rx="15"/>
+    <text x="150" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="white">Legacy Enterprise</text>
+    <text x="150" y="150" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.8)">1M+ Lines of Code</text>
+    
+    <!-- Code snippets representation -->
+    <rect x="70" y="180" width="160" height="8" fill="rgba(255,255,255,0.3)" rx="2"/>
+    <rect x="70" y="200" width="120" fill="rgba(255,255,255,0.2)" height="6" rx="2"/>
+    <rect x="70" y="220" width="140" fill="rgba(255,255,255,0.3)" height="8" rx="2"/>
+    <rect x="70" y="240" width="100" fill="rgba(255,255,255,0.2)" height="6" rx="2"/>
+    <text x="150" y="270" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.6)">Business Rules</text>
+    <text x="150" y="285" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.6)">Domain Logic</text>
+    <text x="150" y="300" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.6)">Patterns</text>
+    
+    <!-- Database representation -->
+    <rect x="85" y="330" width="130" height="60" fill="rgba(0,0,0,0.2)" rx="8"/>
+    <text x="150" y="350" text-anchor="middle" font-size="10" fill="white">Database Schema</text>
+    <text x="150" y="365" text-anchor="middle" font-size="10" fill="white">Relationships</text>
+    <text x="150" y="380" text-anchor="middle" font-size="10" fill="white">Constraints</text>
+    
+    <!-- Technical stack labels -->
+    <text x="150" y="420" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.7)">Java/C#/Python</text>
+    <text x="150" y="435" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.7)">Oracle/SQL Server</text>
+    <text x="150" y="450" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.7)">Monolithic Architecture</text>
+    <text x="150" y="470" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.5)">🕰️ 10-20 Years Old</text>
+  </g>
+  
+  <!-- Harvesting Process (Center) -->
+  <g id="harvesting-agents">
+    <!-- PatternHarvestingAgent -->
+    <circle cx="450" cy="200" r="60" fill="url(#harvestGradient)"/>
+    <text x="450" y="190" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Pattern</text>
+    <text x="450" y="205" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Harvesting</text>
+    <text x="450" y="220" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.8)">44 Capabilities</text>
+    
+    <!-- Knowledge Synthesis Agent -->
+    <circle cx="450" cy="400" r="60" fill="url(#harvestGradient)"/>
+    <text x="450" y="390" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Knowledge</text>
+    <text x="450" y="405" text-anchor="middle" font-size="12" font-weight="bold" fill="white">Synthesis</text>
+    <text x="450" y="420" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.8)">30 Capabilities</text>
+    
+    <!-- Processing indicators -->
+    <g id="processing-flows">
+      <path d="M 250 200 Q 350 180 390 200" stroke="#f59e0b" stroke-width="4" fill="none" marker-end="url(#flowArrow)"/>
+      <path d="M 250 350 Q 350 370 390 400" stroke="#f59e0b" stroke-width="4" fill="none" marker-end="url(#flowArrow)"/>
+      
+      <text x="320" y="175" text-anchor="middle" font-size="10" fill="#f59e0b" font-weight="bold">Code Analysis</text>
+      <text x="320" y="390" text-anchor="middle" font-size="10" fill="#f59e0b" font-weight="bold">Architecture Mining</text>
+    </g>
+  </g>
+  
+  <!-- Extracted Intelligence (Center-Right) -->
+  <g id="intelligence-layer">
+    <rect x="600" y="150" width="200" height="300" fill="rgba(16, 185, 129, 0.1)" stroke="#10b981" stroke-width="3" rx="15"/>
+    <text x="700" y="180" text-anchor="middle" font-size="14" font-weight="bold" fill="#059669">Extracted Intelligence</text>
+    
+    <!-- Intelligence categories -->
+    <rect x="620" y="200" width="160" height="40" fill="rgba(16, 185, 129, 0.2)" rx="8"/>
+    <text x="700" y="220" text-anchor="middle" font-size="11" font-weight="bold" fill="#059669">Business Rules</text>
+    <text x="700" y="232" text-anchor="middle" font-size="9" fill="#047857">Validation • Calculations • Workflows</text>
+    
+    <rect x="620" y="250" width="160" height="40" fill="rgba(16, 185, 129, 0.2)" rx="8"/>
+    <text x="700" y="270" text-anchor="middle" font-size="11" font-weight="bold" fill="#059669">Data Patterns</text>
+    <text x="700" y="282" text-anchor="middle" font-size="9" fill="#047857">Schema • Relationships • Constraints</text>
+    
+    <rect x="620" y="300" width="160" height="40" fill="rgba(16, 185, 129, 0.2)" rx="8"/>
+    <text x="700" y="320" text-anchor="middle" font-size="11" font-weight="bold" fill="#059669">API Patterns</text>
+    <text x="700" y="332" text-anchor="middle" font-size="9" fill="#047857">Endpoints • Authentication • Integration</text>
+    
+    <rect x="620" y="350" width="160" height="40" fill="rgba(16, 185, 129, 0.2)" rx="8"/>
+    <text x="700" y="370" text-anchor="middle" font-size="11" font-weight="bold" fill="#059669">Security Patterns</text>
+    <text x="700" y="382" text-anchor="middle" font-size="9" fill="#047857">Auth • Encryption • Compliance</text>
+    
+    <rect x="620" y="400" width="160" height="40" fill="rgba(16, 185, 129, 0.2)" rx="8"/>
+    <text x="700" y="420" text-anchor="middle" font-size="11" font-weight="bold" fill="#059669">Performance Insights</text>
+    <text x="700" y="432" text-anchor="middle" font-size="9" fill="#047857">Bottlenecks • Optimization • Scaling</text>
+    
+    <!-- Flow arrows from agents to intelligence -->
+    <path d="M 510 200 L 600 250" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#flowArrow)"/>
+    <path d="M 510 400 L 600 350" stroke="#10b981" stroke-width="3" fill="none" marker-end="url(#flowArrow)"/>
+  </g>
+  
+  <!-- Modern Implementation (Right Side) -->
+  <g id="modern-output">
+    <rect x="900" y="100" width="200" height="400" fill="linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)" rx="15"/>
+    <text x="1000" y="130" text-anchor="middle" font-size="14" font-weight="bold" fill="white">AI-Accelerated Future</text>
+    <text x="1000" y="150" text-anchor="middle" font-size="12" fill="rgba(255,255,255,0.8)">50x Faster Development</text>
+    
+    <!-- Modern architecture components -->
+    <rect x="920" y="180" width="160" height="25" fill="rgba(255,255,255,0.2)" rx="12"/>
+    <text x="1000" y="195" text-anchor="middle" font-size="10" fill="white">🏗️ Microservices Architecture</text>
+    
+    <rect x="920" y="215" width="160" height="25" fill="rgba(255,255,255,0.2)" rx="12"/>
+    <text x="1000" y="230" text-anchor="middle" font-size="10" fill="white">☁️ Cloud-Native Infrastructure</text>
+    
+    <rect x="920" y="250" width="160" height="25" fill="rgba(255,255,255,0.2)" rx="12"/>
+    <text x="1000" y="265" text-anchor="middle" font-size="10" fill="white">🤖 AI-Powered Development</text>
+    
+    <rect x="920" y="285" width="160" height="25" fill="rgba(255,255,255,0.2)" rx="12"/>
+    <text x="1000" y="300" text-anchor="middle" font-size="10" fill="white">🔄 Automated Testing</text>
+    
+    <rect x="920" y="320" width="160" height="25" fill="rgba(255,255,255,0.2)" rx="12"/>
+    <text x="1000" y="335" text-anchor="middle" font-size="10" fill="white">🚀 Continuous Deployment</text>
+    
+    <rect x="920" y="355" width="160" height="25" fill="rgba(255,255,255,0.2)" rx="12"/>
+    <text x="1000" y="370" text-anchor="middle" font-size="10" fill="white">📊 Real-time Analytics</text>
+    
+    <!-- Value proposition -->
+    <text x="1000" y="410" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">✨ Zero Legacy Debt</text>
+    <text x="1000" y="425" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">⚡ Instant Scalability</text>
+    <text x="1000" y="440" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">🛡️ Built-in Security</text>
+    <text x="1000" y="455" text-anchor="middle" font-size="11" fill="rgba(255,255,255,0.9)">🎯 Business-First Design</text>
+    <text x="1000" y="480" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.7)">🚀 Ready for Tomorrow</text>
+  </g>
+  
+  <!-- Final transformation arrow -->
+  <path d="M 800 300 Q 850 280 900 300" stroke="#3b82f6" stroke-width="5" fill="none" marker-end="url(#flowArrow)"/>
+  <text x="850" y="270" text-anchor="middle" font-size="12" fill="#3b82f6" font-weight="bold">Transformation</text>
+  
+  <!-- Additional Innovation Systems -->
+  <g id="future-systems">
+    <rect x="1200" y="200" width="150" height="200" fill="rgba(139, 92, 246, 0.1)" stroke="#8b5cf6" stroke-width="2" rx="10"/>
+    <text x="1275" y="225" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c3aed">Innovation</text>
+    <text x="1275" y="240" text-anchor="middle" font-size="12" font-weight="bold" fill="#7c3aed">Pipeline</text>
+    
+    <text x="1275" y="270" text-anchor="middle" font-size="10" fill="#7c3aed">🧠 AI-First Design</text>
+    <text x="1275" y="290" text-anchor="middle" font-size="10" fill="#7c3aed">🔮 Predictive Scaling</text>
+    <text x="1275" y="310" text-anchor="middle" font-size="10" fill="#7c3aed">🎭 Adaptive UX</text>
+    <text x="1275" y="330" text-anchor="middle" font-size="10" fill="#7c3aed">🌐 Edge Computing</text>
+    <text x="1275" y="350" text-anchor="middle" font-size="10" fill="#7c3aed">🔗 Blockchain Integration</text>
+    <text x="1275" y="370" text-anchor="middle" font-size="10" fill="#7c3aed">🤖 Self-Healing Systems</text>
+  </g>
+  
+  <!-- Tagline -->
+  <text x="700" y="570" text-anchor="middle" font-size="18" font-weight="bold" fill="#1e40af">
+    "Accelerating the Future"
+  </text>
+</svg>

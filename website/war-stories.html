@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Engineering War Stories - Equilateral AI</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Real-world tales from the trenches of software development. Production disasters, heroic debugging sessions, and lessons learned.">
+  <meta name="keywords" content="software engineering war stories, production issues, debugging, system failures, development disasters, lessons learned">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="site-title">Equilateral AI</a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="war-stories.html">War Stories</a></li>
+            <li><a href="mcp-workflow.html">MCP Workflow</a></li>
+            <li><a href="coding-with-constraints.html">Constraints</a></li>
+            <li><a href="enterprise-archaeology.html">Archaeology</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="back-nav">
+        <a href="index.html" class="back-link">Back to Home</a>
+      </div>
+
+      <div class="page-header fade-in-up">
+        <h1>🧨 Engineering War Stories</h1>
+        <p class="subtitle">Tales from the trenches of software development - the disasters, the heroes, and the lessons that stick with you forever.</p>
+      </div>
+
+      <div class="content-width">
+        <section class="content-section fade-in-up">
+          <h2>🎯 The Killer Script</h2>
+          <p>In the early days of IBM RS/6000 systems, I wrote two scripts: <code>monitor</code> to gather system stats and <code>merrimack</code> to collect and summarize them. A mistake in the <code>vmstat</code> and <code>iostat</code> parameters caused thousands of zombie monitors to spawn across the system.</p>
+          
+          <div class="quote">
+            My solution? A new script called `killer` that scanned `ps -ef` for rogue processes and `kill -9`'d them by PID. Effective—and very Unix.
+          </div>
+
+          <p>This was before modern process management, before containers, before graceful shutdowns were standard practice. Sometimes the most direct solution was the right solution, even if it wasn't elegant.</p>
+
+          <h3>Lessons for Modern Development:</h3>
+          <ul>
+            <li>Monitor your monitoring - recursive problems compound quickly</li>
+            <li>Simple, direct solutions often work better than complex ones</li>
+            <li>Always have a cleanup strategy for runaway processes</li>
+            <li>Name your scripts descriptively - <code>killer</code> was unambiguous</li>
+          </ul>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>🌀 Hoover Eats Everything</h2>
+          <p>At ADP, I built a CD-ROM mastering system for client mainframe reports. Year-end processing was buckling under leftover working files. I wrote a cleanup tool named <code>Hoover</code> to remove temp files based on CD status. It worked perfectly on my development box.</p>
+
+          <p>But on Christmas Eve, Hoover ran wild at a live site due to a missing environment variable—executing <code>rm -rf .</code> and deleting up the directory tree until it crashed the system with the infamous flashing 888 code.</p>
+
+          <div class="code-block" data-language="bash">
+# The dangerous default that taught me everything about defensive programming
+CLEANUP_PATH=${CLEANUP_PATH:-.}  # This dot nearly ended my career
+rm -rf $CLEANUP_PATH/*
+          </div>
+
+          <p>I had to ship a fresh <code>mksysb</code> tape overnight to recover the system. Christmas was spent rebuilding production infrastructure and writing much more paranoid shell scripts.</p>
+
+          <h3>The Birth of Defensive Programming:</h3>
+          <ul>
+            <li>Never trust environment variables to exist in all environments</li>
+            <li>Always validate paths before destructive operations</li>
+            <li>Test in environments that mirror production exactly</li>
+            <li>Build in multiple safety checks, not just one</li>
+            <li>Holiday deployments are never "quick fixes"</li>
+          </ul>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>🧱 Prodigy and the Bad Block</h2>
+          <p>At 2 AM, I drove 90 minutes to a Prodigy data center. Their NetView box (RS/6000) had failed. Unlike AS/400s with journaling, RS/6000s couldn't easily recover from failed drives. The restore kept failing with a flashing 888 at different files each time.</p>
+
+          <p>Diagnostics said the drive was fine. But I insisted on replacing it anyway—sometimes you have to trust your instincts over the tools.</p>
+
+          <div class="quote">
+            The next restore worked perfectly. The real issue? Bad blocks and an unimplemented call to the relocation routine—a "software error" that was technically true, but deeply unhelpful.
+          </div>
+
+          <h3>Hardware Intuition in Software Age:</h3>
+          <ul>
+            <li>Cryptic error messages often hide simple hardware problems</li>
+            <li>When debugging gets circular, change the hardware</li>
+            <li>Trust patterns over individual diagnostic results</li>
+            <li>Sometimes "software errors" are hardware lying to software</li>
+          </ul>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>🚨 Hoover 2.0 and the Ghost Variables</h2>
+          <p>You'd think I learned my lesson after the first Hoover incident. Hoover 2.0 had protections—environment variable checks, path validation, dry-run modes. Until someone ran it without setting the scope variable.</p>
+
+          <p>It defaulted to <code>.</code> and wiped production logs before we caught it. From then on, every script had paranoid checks that would make modern security teams proud.</p>
+
+          <div class="code-block" data-language="bash">
+# The paranoid validation that saved my career
+if [ -z "$CLEANUP_PATH" ] || [ "$CLEANUP_PATH" = "." ] || [ "$CLEANUP_PATH" = "/" ]; then
+    echo "FATAL: Invalid or missing CLEANUP_PATH. Exiting."
+    exit 1
+fi
+
+if [ ! -d "$CLEANUP_PATH" ]; then
+    echo "FATAL: CLEANUP_PATH does not exist. Exiting."
+    exit 1
+fi
+
+# Triple-check we're not in a system directory
+case "$CLEANUP_PATH" in
+    /bin*|/usr*|/etc*|/var/log|/)
+        echo "FATAL: Refusing to clean system directory. Exiting."
+        exit 1
+        ;;
+esac
+          </div>
+
+          <h3>Modern AI Development Parallels:</h3>
+          <ul>
+            <li>AI assistants need the same paranoid validation</li>
+            <li>Never trust that context variables exist across sessions</li>
+            <li>Build multiple safety nets, not just one</li>
+            <li>Make failures loud and obvious, not silent</li>
+            <li>Document your assumptions - they will be wrong</li>
+          </ul>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>From Shell Scripts to AI Workflows</h2>
+          <p>These early disasters shaped how I approach modern AI-assisted development. The same principles that prevented Hoover 3.0 from destroying production now guide how I structure AI workflows with Claude and CLINE.</p>
+
+          <div class="quote">
+            Whether it's a shell script or an AI assistant, the fundamental rule remains: assume everything will go wrong, and build your safeguards accordingly.
+          </div>
+
+          <p>Today's <code>.clinerules</code> directories and MCP protocols are direct descendants of those paranoid shell script validations. The technology changes, but the need for defensive programming remains constant.</p>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Submit Your War Story</h2>
+          <p>Have a war story that haunts your dreams or taught you something invaluable? Every experienced developer has at least one story that makes them check their backup procedures and review their monitoring setup.</p>
+          
+          <p class="text-muted">Stories can be anonymous and will focus on the technical lessons learned rather than blame. The goal is to help other developers avoid similar pitfalls or at least be better prepared when disaster strikes.</p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="war-stories.html">War Stories</a>
+          <a href="mcp-workflow.html">MCP</a>
+          <a href="coding-with-constraints.html">Constraints</a>
+          <a href="enterprise-archaeology.html">Archaeology</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="mailto:hello@equilateral.ai">Contact</a>
+        </div>
+        <p>&copy; 2025 Equilateral AI. Learning from production disasters since forever.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

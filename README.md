@@ -4,6 +4,13 @@ A production-ready multi-agent orchestration system designed for domain-specific
 
 **Developed by Equilateral AI (Pareidolia LLC)**
 
+## 📁 Repository Structure
+
+- **`src/agents/`** - Core agent orchestration system and 11+ specialist agents
+- **`website/`** - Official equilateral.ai marketing website with deployment scripts
+- **`tests/`** - Comprehensive testing suite (Cypress, Playwright, unit tests)
+- **`deployment-packages/`** - Deployment artifacts and distribution packages
+
 ## What This Framework Provides
 
 This is a **complete 11-agent system** that can be customized for any programming language and business domain. It's particularly powerful for:

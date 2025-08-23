@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Model Context Protocol in Practice - Equilateral AI</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Deep dive into MCP implementation, tooling, and workflow integration. How AI assistants are revolutionizing development practices.">
+  <meta name="keywords" content="Model Context Protocol, MCP, AI-assisted development, development workflow, AI tooling, code assistance">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="site-title">Equilateral AI</a>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="war-stories.html">War Stories</a></li>
+            <li><a href="mcp-workflow.html">MCP Workflow</a></li>
+            <li><a href="coding-with-constraints.html">Constraints</a></li>
+            <li><a href="enterprise-archaeology.html">Archaeology</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="back-nav">
+        <a href="index.html" class="back-link">Back to Home</a>
+      </div>
+
+      <div class="page-header fade-in-up">
+        <h1>🤖 Model Context Protocol in Practice</h1>
+        <p class="subtitle">How MCP is transforming development workflows and enabling seamless human-AI collaboration in software engineering.</p>
+      </div>
+
+      <div class="content-width">
+        <section class="content-section fade-in-up">
+          <h2>What is Model Context Protocol?</h2>
+          <p>Model Context Protocol (MCP) is the connective tissue that transforms AI assistants from helpful chatbots into active development partners. Think of it as the nervous system linking your codebase, database, tests, version control, and development standards into a coherent narrative for AI assistants like Claude.</p>
+          
+          <div class="quote">
+            Without MCP, AI assistants are just guessing. With it, they're guided, purposeful, and context-aware.
+          </div>
+
+          <p>MCP isn't a single tool—it's a structured interface between AI assistants and the systems that matter: your database (the canonical source of truth), test suite, git history, code structure, and architectural standards. Every AI action can be checked against this evolving knowledge base.</p>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Real-World MCP Implementation</h2>
+          <p>In our development workflow, we've integrated MCP servers that provide AI assistants with access to:</p>
+          
+          <h3>Database Operations</h3>
+          <div class="code-block" data-language="typescript">
+// MCP server enabling AI to query PostgreSQL directly
+const queryResult = await mcpClient.executeQuery(
+  'SELECT COUNT(*) FROM users WHERE created_at > $1', 
+  [new Date('2024-01-01')]
+);
+
+// AI can now analyze data patterns and suggest optimizations
+          </div>
+
+          <h3>Git Integration</h3>
+          <p>Our Git MCP server allows AI to understand commit history, analyze code changes, and even suggest merge strategies based on the actual project evolution:</p>
+          
+          <div class="code-block" data-language="bash">
+# AI can examine file history and understand change patterns
+git log --oneline --follow src/handlers/integrations/listTemplates.js
+
+# Then provide context-aware suggestions for refactoring
+          </div>
+
+          <h3>Playwright Browser Automation</h3>
+          <p>Integration testing becomes collaborative when AI can actually see and interact with your application through browser automation tools.</p>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>The Developer Experience Revolution</h2>
+          <p>Traditional AI coding assistance feels like having a very knowledgeable intern who can only read documentation. MCP-enabled AI feels like pair programming with a senior developer who has perfect memory and instant access to your entire system.</p>
+
+          <h3>Before MCP:</h3>
+          <ul>
+            <li>Copy-paste code to AI for analysis</li>
+            <li>Describe system architecture in prompts</li>
+            <li>Manually verify AI suggestions against actual codebase</li>
+            <li>No persistence between conversations</li>
+          </ul>
+
+          <h3>With MCP:</h3>
+          <ul>
+            <li>AI reads and understands your actual project structure</li>
+            <li>Analyzes real data and usage patterns</li>
+            <li>Tests suggestions against your actual codebase</li>
+            <li>Maintains context across development sessions</li>
+            <li>Can execute changes and verify results</li>
+          </ul>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Real-World Example: Refactoring with Confidence</h2>
+          <p>When refactoring 100+ Lambda functions to extract reusable helper code, I granted Claude full MCP access. It used our development standards to identify duplicate logic and centralized it into shared modules. Then it ran Playwright via MCP to confirm tests still passed. Git MCP showed what changed and whether those changes aligned with best practices.</p>
+
+          <div class="quote">
+            A human approved the final merge, but Claude did the heavy lifting with safety nets in place.
+          </div>
+
+          <h3>The Danger of Autonomy: A Learning Experience</h3>
+          <p>On one early test, I increased the autonomous write settings. Claude began inventing frontend code and imaginary helper libraries. Without constraints, the model wandered into fiction.</p>
+
+          <p>That's why MCP must not only supply context, but also enforce boundaries. The same paranoid validation patterns that prevented the Hoover script disasters now protect AI workflows.</p>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>The Loop of Truth</h2>
+          <p>What makes MCP powerful isn't just inputs—it's feedback loops:</p>
+          
+          <ul>
+            <li><strong>Test fails?</strong> Claude sees the result</li>
+            <li><strong>Diff breaks style?</strong> Claude gets the linter warning</li>
+            <li><strong>Type mismatch?</strong> MCP validates against DB schema and tells Claude it's wrong</li>
+            <li><strong>Standards violation?</strong> Custom instructions trigger immediate correction</li>
+          </ul>
+
+          <div class="quote">
+            Each step brings the model closer to the truth, while keeping it safe.
+          </div>
+
+          <p>This is how AI becomes more than a co-pilot. It becomes a teammate—with clear roles, responsibilities, and memory (even if ephemeral).</p>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>MCP Server Architecture</h2>
+          <p>Our MCP implementation consists of specialized servers that provide specific capabilities:</p>
+
+          <h3>Core Servers</h3>
+          <ul>
+            <li><strong>Database Server:</strong> Query execution, schema analysis, performance monitoring</li>
+            <li><strong>Git Server:</strong> History analysis, branch management, commit insights</li>
+            <li><strong>File System Server:</strong> Code reading, structure analysis, change tracking</li>
+            <li><strong>Testing Server:</strong> Test execution, coverage analysis, performance benchmarking</li>
+          </ul>
+
+          <h3>Domain-Specific Servers</h3>
+          <ul>
+            <li><strong>Playwright Server:</strong> Browser automation and integration testing</li>
+            <li><strong>AWS Server:</strong> Infrastructure monitoring and deployment analysis</li>
+            <li><strong>API Server:</strong> Endpoint testing and documentation generation</li>
+          </ul>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Challenges and Lessons Learned</h2>
+          
+          <h3>Security and Access Control</h3>
+          <p>Giving AI access to your production systems requires careful security boundaries. We've implemented:</p>
+          <ul>
+            <li>Read-only access patterns for sensitive operations</li>
+            <li>Approval workflows for destructive actions</li>
+            <li>Audit logging for all MCP interactions</li>
+            <li>Environment-specific permission scoping</li>
+          </ul>
+
+          <h3>Context Management</h3>
+          <p>AI with too much context becomes overwhelmed; too little context provides poor suggestions. Finding the right balance requires:</p>
+          <ul>
+            <li>Smart context filtering based on current task</li>
+            <li>Progressive disclosure of system complexity</li>
+            <li>User-controlled context boundaries</li>
+          </ul>
+
+          <h3>Integration Complexity</h3>
+          <p>Each MCP server adds operational complexity. Success requires treating them as first-class infrastructure components with proper monitoring, documentation, and maintenance procedures.</p>
+        </section>
+
+        <section class="content-section fade-in-up">
+          <h2>Future Directions</h2>
+          <p>MCP is evolving rapidly. We're exploring:</p>
+          <ul>
+            <li><strong>Autonomous Testing:</strong> AI-driven test generation and execution</li>
+            <li><strong>Code Review Augmentation:</strong> AI understanding of change impact across systems</li>
+            <li><strong>Performance Optimization:</strong> Automated bottleneck detection and resolution</li>
+            <li><strong>Documentation Generation:</strong> Self-updating technical documentation</li>
+          </ul>
+
+          <div class="quote">
+            The goal isn't to replace developers, but to amplify human expertise with AI capabilities that understand and interact with real systems.
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="war-stories.html">War Stories</a>
+          <a href="mcp-workflow.html">MCP</a>
+          <a href="coding-with-constraints.html">Constraints</a>
+          <a href="enterprise-archaeology.html">Archaeology</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="mailto:hello@equilateral.ai">Contact</a>
+        </div>
+        <p>&copy; 2025 Equilateral AI. Bridging human expertise and AI capabilities.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
